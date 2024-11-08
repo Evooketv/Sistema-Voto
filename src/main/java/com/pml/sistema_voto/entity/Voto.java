@@ -1,5 +1,6 @@
 package com.pml.sistema_voto.entity;
 
+import com.pml.sistema_voto.entity.enums.OpcaoVoto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,16 +18,18 @@ public class Voto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String opcao;
+    @Enumerated(EnumType.STRING)
+    private OpcaoVoto opcao;
 
-    @OneToOne
-    @JoinColumn(name = "pessoa_id", nullable = false)
-    private Pessoa pessoa;
-
-    @OneToOne
-    @JoinColumn(name = "pauta_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "pauta_id", nullable = false)
     private Pauta pauta;
 
-    
+    @OneToOne(optional = true)
+    @JoinColumn(name = "pessoa_id", nullable = true)
+    private Pessoa pessoa;
+
+    private String descricao;
+
 
 }

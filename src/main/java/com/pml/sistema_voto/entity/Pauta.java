@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Getter
@@ -19,12 +20,12 @@ public class Pauta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String descricao;
-    private LocalDateTime tempoPauta;
-
-    @OneToOne(mappedBy = "pauta")
-    private Voto voto;
-
+    private LocalDateTime inicioPauta;
+    private LocalDateTime fimPauta;
+    @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL)
+    private List<Voto> votos;
 
 
 }

@@ -4,7 +4,7 @@ services:
     volumes:
       - dbase:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3312:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin1234
       MYSQL_DATABASE: sistema-voto-db-1
